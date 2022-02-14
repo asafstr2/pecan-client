@@ -76,7 +76,13 @@ function App() {
           ...prev,
           ModelId: String(parseInt(prev.ModelId) + 1),
         }));
-        setData(data?.data);
+        setData((prev) => [...prev, data?.data]);
+        setError({
+          message: "its in! predection will be shortly availeble",
+          severity: "success",
+        });
+      }
+      if (data?.status === 200) {
         setError({ message: "its in", severity: "success" });
       }
     } catch (error) {
