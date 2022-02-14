@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   error: {
     color: ({ error }) => (error?.severity === "error" ? "red" : "green"),
   },
+  show: {
+    display: "flex",
+    flexDirection: "column",
+  },
 }));
 
 function App() {
@@ -122,6 +126,12 @@ function App() {
           Submit
         </LoadingButton>
       </Box>
+      <div className={classes.show}>
+        <h4>The Data</h4>
+        {data.map((p) => (
+          <p>ModelId {p.ModelId}</p>
+        ))}
+      </div>
     </div>
   );
 }
