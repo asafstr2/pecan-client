@@ -75,19 +75,20 @@ function App() {
     setLoading(true);
     try {
       const data = await axios.post("/v1/api", value);
-      if (data?.status === 201) {
+      if (data?.status === 200) {
         setValue((prev) => ({
           ...prev,
           ModelId: String(parseInt(prev.ModelId) + 1),
         }));
         setData((prev) => [...prev, data?.data]);
+        setError({ message: "its in", severity: "success" });
+
+      }
+      if (data?.status === 201) {
         setError({
           message: "its in! predection will be shortly availeble",
           severity: "success",
         });
-      }
-      if (data?.status === 200) {
-        setError({ message: "its in", severity: "success" });
       }
     } catch (error) {
       setError({ ...error?.response?.data, severity: "error" });
